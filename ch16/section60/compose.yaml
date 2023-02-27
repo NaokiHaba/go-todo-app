@@ -1,0 +1,20 @@
+
+version: "3.9"
+# ref: https://docs.docker.com/compose/compose-file
+services:
+  app:
+    image: gotodo
+    build:
+
+      args:
+        - target=dev
+    environment:
+      TODO_ENV: dev
+      PORT: 8080
+    # ホストマシンのカレントディレクトリとコンテナの/appディレクトリをマウント
+    # ホストマシンで編集したファイルをコンテナ内で即座に反映させることができます
+    volumes:
+      - .:/app
+    # コンテナのポート8080をホストマシンのポート18000にマッピング
+    ports:
+      - "18000:8080"
